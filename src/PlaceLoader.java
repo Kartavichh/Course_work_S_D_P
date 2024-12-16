@@ -2,6 +2,9 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Лучше добавить к классу DefaultTravelGuide
+ */
 public class PlaceLoader {
     public static void loadPlaces(List<Place> places) {
         ExecutorService executor = Executors.newFixedThreadPool(2);

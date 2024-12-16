@@ -5,10 +5,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // Инициализация списка достопримечательностей
+        // Хранить список в DefaultTravelGuide
         List<Place> places = new ArrayList<>();
 
         // Загрузка данных многопоточно
+        /* В качестве примера много поточности лучше использовать задач
+         * Задача "Производитель-потребитель"
+         * Задача "Читатели-писатели"
+         * Задача "Обедающие философы"
+         * Проблема спящего брадобрея
+         * В твоём случае лучше сделать отдельный GUI на отдельном потоке
+         * (можно просто сделать имитацию консоли ввода)
+         * в основную консоль писать логи
+         */
         System.out.println("Начинаем загрузку данных...");
+
         PlaceLoader.loadPlaces(places);
 
         // Интерфейс командной строки
@@ -38,14 +49,14 @@ public class Main {
                     System.out.print("Введите название для поиска: ");
                     String nameQuery = scanner.nextLine();
                     SearchStrategy nameSearch = new NameSearch();
-                    nameSearch.search(places, nameQuery);
+                    nameSearch.search(places, nameQuery); // Использовать DefaultTravelGuide
                     break;
 
                 case 3:
                     System.out.print("Введите категорию для поиска: ");
                     String categoryQuery = scanner.nextLine();
                     SearchStrategy categorySearch = new CategorySearch();
-                    categorySearch.search(places, categoryQuery);
+                    categorySearch.search(places, categoryQuery);  // Использовать DefaultTravelGuide
                     break;
 
                 case 4:
