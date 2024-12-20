@@ -4,19 +4,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Инициализация списка достопримечательностей
-
-
-        // Загрузка данных многопоточно
-        /* В качестве примера много поточности лучше использовать задач
-         * Задача "Производитель-потребитель"
-         * Задача "Читатели-писатели"
-         * Задача "Обедающие философы"
-         * Проблема спящего брадобрея
-         * В твоём случае лучше сделать отдельный GUI на отдельном потоке
-         * (можно просто сделать имитацию консоли ввода)
-         * в основную консоль писать логи
-         */
         DefaultTravelGuide defaultTravelGuide = new DefaultTravelGuide();
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
