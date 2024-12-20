@@ -1,8 +1,5 @@
 import java.util.List;
 
-/**
- * Лучше добавить к классу DefaultTravelGuide
- */
 public class CategorySearch implements SearchStrategy {
     @Override
     public void search(List<Place> places, String query) {

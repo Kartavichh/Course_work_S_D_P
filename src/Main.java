@@ -18,11 +18,6 @@ public class Main {
          * в основную консоль писать логи
          */
         DefaultTravelGuide defaultTravelGuide = new DefaultTravelGuide();
-        System.out.println("Начинаем загрузку данных...");
-
-
-
-        // Интерфейс командной строки
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -47,16 +42,14 @@ public class Main {
 
                     case 2:
                         System.out.print("Введите название для поиска: ");
-                        String nameQuery = scanner.nextLine();
-                        SearchStrategy nameSearch = new NameSearch();
-                        nameSearch.search(defaultTravelGuide.getPlaces(), nameQuery); // Использовать DefaultTravelGuide
+                        String nameQuery = scanner.next();
+                        defaultTravelGuide.searchPlacesForName(nameQuery);
                         break;
 
                     case 3:
                         System.out.print("Введите категорию для поиска: ");
-                        String categoryQuery = scanner.nextLine();
-                        SearchStrategy categorySearch = new CategorySearch();
-                        categorySearch.search(defaultTravelGuide.getPlaces(), categoryQuery);  // Использовать DefaultTravelGuide
+                        String categoryQuery = scanner.next();
+                        defaultTravelGuide.searchPlacesForCategory(categoryQuery);
                         break;
 
                     case 4:
@@ -75,6 +68,3 @@ public class Main {
         scanner.close();
     }
 }
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
