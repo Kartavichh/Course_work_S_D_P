@@ -35,7 +35,7 @@ public class Main {
             System.out.print("Введите номер команды: ");
 
 
-            while (scanner.hasNextInt()) {
+            if (scanner.hasNextInt()) {
                 int command = scanner.nextInt();
                 switch (command) {
                     case 1:
@@ -67,6 +67,8 @@ public class Main {
                     default:
                         System.out.println("Неверная команда, попробуйте снова.");
                 }
+            } else {
+                System.out.println("Неверная команда, попробуйте снова.");
             }
 
         }
