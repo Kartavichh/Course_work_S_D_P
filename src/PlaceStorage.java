@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaceStorage {
+public enum PlaceStorage {
+    INSTANCE;
     private final List<Place> places = new ArrayList<>();
 
     public synchronized void add(Place place) {
