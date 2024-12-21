@@ -1,5 +1,7 @@
 import java.util.List;
 
+// Реализация стратегии поиска по категории
+// Шаблон: Strategy
 public class CategorySearch implements SearchStrategy {
     @Override
     public void search(List<Place> places, String query) {

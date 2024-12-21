@@ -1,7 +1,8 @@
+// Модель данных для представления достопримечательностей
 public class Place {
-    private String name;
-    private String category;
-    private String description;
+    private String name; // Название места
+    private String category; // Категория места
+    private String description; // Описание места
 
     public Place(String name, String category, String description) {
         this.name = name;

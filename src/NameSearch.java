@@ -1,5 +1,7 @@
 import java.util.List;
 
+// Реализация стратегии поиска по названию
+// Шаблон: Strategy
 public class NameSearch implements SearchStrategy {
     @Override
     public void search(List<Place> places, String query) {

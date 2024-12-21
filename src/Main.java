@@ -1,10 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+// Основной класс для запуска приложения
 public class Main {
     public static void main(String[] args) {
-        DefaultTravelGuide defaultTravelGuide = new DefaultTravelGuide();
+        DefaultTravelGuide defaultTravelGuide = new DefaultTravelGuide(); // Фасад
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -15,7 +14,6 @@ public class Main {
             System.out.println("3. Поиск по категории");
             System.out.println("4. Выйти");
             System.out.print("Введите номер команды: ");
-
 
             if (scanner.hasNextInt()) {
                 int command = scanner.nextInt();
@@ -30,13 +28,13 @@ public class Main {
                     case 2:
                         System.out.print("Введите название для поиска: ");
                         String nameQuery = scanner.next();
-                        defaultTravelGuide.searchPlacesForName(nameQuery);
+                        defaultTravelGuide.searchPlacesForName(nameQuery); // Использование стратегии поиска по имени
                         break;
 
                     case 3:
                         System.out.print("Введите категорию для поиска: ");
                         String categoryQuery = scanner.next();
-                        defaultTravelGuide.searchPlacesForCategory(categoryQuery);
+                        defaultTravelGuide.searchPlacesForCategory(categoryQuery); // Использование стратегии поиска по категории
                         break;
 
                     case 4:
@@ -50,7 +48,6 @@ public class Main {
             } else {
                 System.out.println("Неверная команда, попробуйте снова.");
             }
-
         }
         scanner.close();
     }

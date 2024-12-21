@@ -1,8 +1,10 @@
 import java.util.concurrent.BlockingQueue;
 
+// Обработчик мест из очереди
+// Шаблон: Queue-based Processing
 public class PlaceHandler implements Runnable {
-    private BlockingQueue<Place> queue;
-    private PlaceStorage placeStorage;
+    private BlockingQueue<Place> queue; // Очередь для обработки
+    private PlaceStorage placeStorage; // Хранилище мест (Singleton)
 
     public PlaceHandler(BlockingQueue<Place> queue, PlaceStorage placeStorage) {
         this.queue = queue;
@@ -13,8 +15,8 @@ public class PlaceHandler implements Runnable {
     public void run() {
         try {
             while (!queue.isEmpty()) {
-                Place place = queue.take(); // Retrieves and removes from the head of the queue
-                placeStorage.add(place); // Add place to the storage
+                Place place = queue.take(); // Извлечение из очереди
+                placeStorage.add(place); // Добавление в хранилище
                 System.out.println("Processed place: " + place.getName());
             }
         } catch (InterruptedException e) {
