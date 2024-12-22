@@ -1,3 +1,10 @@
+package util;
+
+import search.CategorySearch;
+//import search.DescriptionSearch;
+import search.NameSearch;
+import search.SearchStrategy;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +16,7 @@ public class StrategyRegistry {
         // Регистрация стандартных стратегий
         registerStrategy("name", new NameSearch());
         registerStrategy("category", new CategorySearch());
-        registerStrategy("description", new DescriptionSearch());
+//      registerStrategy("description", new DescriptionSearch());
 
 
     }

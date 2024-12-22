@@ -1,3 +1,6 @@
+import guide.DefaultTravelGuide;
+import guide.Route;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -38,8 +41,8 @@ public class Main {
 
     private static void simulateUser(String userName, DefaultTravelGuide travelGuide) {
         Random random = new Random();
-        String[] categories = {"Историческое место", "Архитектура"};
-        String[] names = {"Кремль", "Чкаловская лестница"};
+        String[] routeCategories = {"Историческое место", "Архитектура", "Природа", "Культура"};
+        String[] routeNames = {"Исторический тур", "Архитектурное наследие", "Природные красоты"};
 
         for (int i = 0; i < 5; i++) {
             int action = random.nextInt(3) + 1; // Случайное действие: 1, 2 или 3
@@ -50,22 +53,22 @@ public class Main {
 
                 switch (action) {
                     case 1:
-                        System.out.println(userName + " показывает все достопримечательности:");
-                        for (Place place : travelGuide.getPlaces()) {
-                            System.out.println(place);
+                        System.out.println(userName + " показывает все маршруты:");
+                        for (Route route : travelGuide.getRoutes()) {
+                            System.out.println(route);
                         }
                         break;
 
                     case 2:
-                        String nameQuery = names[random.nextInt(names.length)];
-                        System.out.println(userName + " ищет по названию: " + nameQuery);
-                        travelGuide.searchPlaces("name", nameQuery); // Синхронизированный поиск
+                        String routeNameQuery = routeNames[random.nextInt(routeNames.length)];
+                        System.out.println(userName + " ищет маршрут по названию: " + routeNameQuery);
+                        travelGuide.searchRoutes("name", routeNameQuery);
                         break;
 
                     case 3:
-                        String categoryQuery = categories[random.nextInt(categories.length)];
-                        System.out.println(userName + " ищет по категории: " + categoryQuery);
-                        travelGuide.searchPlaces("category", categoryQuery); // Синхронизированный поиск
+                        String routeCategoryQuery = routeCategories[random.nextInt(routeCategories.length)];
+                        System.out.println(userName + " ищет маршрут по категории: " + routeCategoryQuery);
+                        travelGuide.searchRoutes("category", routeCategoryQuery);
                         break;
 
                     default:
@@ -83,7 +86,6 @@ public class Main {
             }
         }
     }
-
 
 
     private static String getCurrentTimestamp() {
