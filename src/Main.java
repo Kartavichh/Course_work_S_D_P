@@ -27,6 +27,8 @@ public class Main {
         try {
             thread1.join();
             thread2.join();
+            thread3.join();
+            thread4.join();
         } catch (InterruptedException e) {
             synchronized (lock) {
                 System.err.println("Главный поток прерван: " + e.getMessage());
@@ -45,38 +47,30 @@ public class Main {
             synchronized (lock) {
                 System.out.println("\n=== " + userName + " ===");
                 System.out.println("Время: " + getCurrentTimestamp());
-            }
 
-            switch (action) {
-                case 1:
-                    synchronized (lock) {
+                switch (action) {
+                    case 1:
                         System.out.println(userName + " показывает все достопримечательности:");
                         for (Place place : travelGuide.getPlaces()) {
                             System.out.println(place);
                         }
-                    }
-                    break;
+                        break;
 
-                case 2:
-                    String nameQuery = names[random.nextInt(names.length)];
-                    synchronized (lock) {
+                    case 2:
+                        String nameQuery = names[random.nextInt(names.length)];
                         System.out.println(userName + " ищет по названию: " + nameQuery);
-                    }
-                    travelGuide.searchPlaces("name", nameQuery);
-                    break;
+                        travelGuide.searchPlaces("name", nameQuery); // Синхронизированный поиск
+                        break;
 
-                case 3:
-                    String categoryQuery = categories[random.nextInt(categories.length)];
-                    synchronized (lock) {
+                    case 3:
+                        String categoryQuery = categories[random.nextInt(categories.length)];
                         System.out.println(userName + " ищет по категории: " + categoryQuery);
-                    }
-                    travelGuide.searchPlaces("category", categoryQuery);
-                    break;
+                        travelGuide.searchPlaces("category", categoryQuery); // Синхронизированный поиск
+                        break;
 
-                default:
-                    synchronized (lock) {
+                    default:
                         System.out.println(userName + ": неизвестная команда.");
-                    }
+                }
             }
 
             try {
@@ -89,6 +83,8 @@ public class Main {
             }
         }
     }
+
+
 
     private static String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
