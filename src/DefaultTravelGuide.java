@@ -4,8 +4,6 @@ import java.util.List;
 // Шаблон: Facade
 public class DefaultTravelGuide {
     PlaceLoader placeLoader = new PlaceLoader(); // Загрузка мест
-    SearchStrategy nameSearch = new NameSearch(); // Поиск по названию (Strategy)
-    SearchStrategy categorySearch = new CategorySearch(); // Поиск по категории (Strategy)
 
     public DefaultTravelGuide() {
         loadPlaces(); // Инициализация данных
@@ -19,11 +17,12 @@ public class DefaultTravelGuide {
         placeLoader.loadPlaces(new PlaceFactory(), PlaceStorage.INSTANCE); // Загрузка данных через PlaceLoader
     }
 
-    public void searchPlacesForName(String name) {
-        nameSearch.search(PlaceStorage.INSTANCE.getPlaces(), name); // Вызов стратегии поиска по имени
-    }
-
-    public void searchPlacesForCategory(String category) {
-        categorySearch.search(PlaceStorage.INSTANCE.getPlaces(), category); // Вызов стратегии поиска по категории
+    public void searchPlaces(String strategyName, String query) {
+        SearchStrategy strategy = StrategyRegistry.getStrategy(strategyName); // Получение стратегии из реестра
+        if (strategy != null) {
+            strategy.search(PlaceStorage.INSTANCE.getPlaces(), query);
+        } else {
+            System.out.println("Стратегия " + strategyName + " не найдена.");
+        }
     }
 }
