@@ -10,22 +10,23 @@ import java.util.Map;
 
 // Реестр стратегий поиска
 public class StrategyRegistry {
-    private static final Map<String, SearchStrategy> strategies = new HashMap<>();
+    private static final StrategyRegistry INSTANCE = new StrategyRegistry();
+    private final Map<String, SearchStrategy> strategies = new HashMap<>();
 
-    static {
-        // Регистрация стандартных стратегий
+    private StrategyRegistry() {
         registerStrategy("name", new NameSearch());
         registerStrategy("category", new CategorySearch());
-//      registerStrategy("description", new DescriptionSearch());
-
-
     }
 
-    public static void registerStrategy(String name, SearchStrategy strategy) {
+    public static StrategyRegistry getInstance() {
+        return INSTANCE;
+    }
+
+    public void registerStrategy(String name, SearchStrategy strategy) {
         strategies.put(name, strategy);
     }
 
-    public static SearchStrategy getStrategy(String name) {
+    public SearchStrategy getStrategy(String name) {
         return strategies.get(name);
     }
 }
