@@ -27,11 +27,7 @@ public class Route {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Маршрут: ").append(name).append(" (").append(category).append(")\n");
-        for (String place : places) {
-            sb.append("- ").append(place).append("\n");
-        }
-        return sb.toString();
+        return "Маршрут: " + name + " (" + category + ")\n" +
+                String.join(" --> ", places);
     }
 }

@@ -1,25 +1,25 @@
 package util;
 
 import search.CategorySearch;
-//import search.DescriptionSearch;
 import search.NameSearch;
 import search.SearchStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
 
-// Реестр стратегий поиска
+// Реестр стратегий поиска (Шаблон: Singleton)
 public class StrategyRegistry {
-    private static final StrategyRegistry INSTANCE = new StrategyRegistry();
+    private static final StrategyRegistry INSTANCE = new StrategyRegistry(); // Одиночка
     private final Map<String, SearchStrategy> strategies = new HashMap<>();
 
     private StrategyRegistry() {
+        // Регистрация стандартных стратегий
         registerStrategy("name", new NameSearch());
         registerStrategy("category", new CategorySearch());
     }
 
     public static StrategyRegistry getInstance() {
-        return INSTANCE;
+        return INSTANCE; // Возвращает единственный экземпляр
     }
 
     public void registerStrategy(String name, SearchStrategy strategy) {

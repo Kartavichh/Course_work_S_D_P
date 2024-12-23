@@ -9,14 +9,25 @@ public class Main {
     private static final Object lock = new Object(); // Блокировка для синхронизации вывода
 
     public static void main(String[] args) {
-        DefaultTravelGuide defaultTravelGuide = new DefaultTravelGuide(); // Фасад
+        // Использование фасада (Шаблон: Facade)
+        DefaultTravelGuide defaultTravelGuide = new DefaultTravelGuide();
 
-        // Создаём два потока для имитации работы двух пользователей
+        // Декорируем первый маршрут дополнительным описанием (Шаблон: Decorator)
+        Route firstRoute = defaultTravelGuide.getRoutes().getFirst();
+        Route decoratedRoute = new DescriptionDecorator(firstRoute, "Этот маршрут включает знаковые исторические объекты.");
+
+        synchronized (lock) {
+            System.out.println("\n=== Пример декорированного маршрута ===");
+            System.out.println(decoratedRoute); // Вывод декорированного маршрута
+        }
+
+        // Имитация работы пользователей
         Runnable user1 = () -> simulateUser("Пользователь 1", defaultTravelGuide);
         Runnable user2 = () -> simulateUser("Пользователь 2", defaultTravelGuide);
         Runnable user3 = () -> simulateUser("Пользователь 3", defaultTravelGuide);
         Runnable user4 = () -> simulateUser("Пользователь 4", defaultTravelGuide);
 
+        // Создаем и запускаем потоки (Шаблон: Thread)
         Thread thread1 = new Thread(user1);
         Thread thread2 = new Thread(user2);
         Thread thread3 = new Thread(user3);
@@ -28,6 +39,7 @@ public class Main {
         thread4.start();
 
         try {
+            // Ожидание завершения потоков
             thread1.join();
             thread2.join();
             thread3.join();
@@ -53,19 +65,23 @@ public class Main {
 
                 switch (action) {
                     case 1:
+                        // Вывод всех маршрутов
                         System.out.println(userName + " показывает все маршруты:");
                         for (Route route : travelGuide.getRoutes()) {
-                            System.out.println(route);
+                            System.out.println(route + "\n");
+
                         }
                         break;
 
                     case 2:
+                        // Поиск маршрута по названию (Шаблон: Strategy + Singleton)
                         String routeNameQuery = routeNames[random.nextInt(routeNames.length)];
                         System.out.println(userName + " ищет маршрут по названию: " + routeNameQuery);
                         travelGuide.searchRoutes("name", routeNameQuery);
                         break;
 
                     case 3:
+                        // Поиск маршрута по категории (Шаблон: Strategy + Singleton)
                         String routeCategoryQuery = routeCategories[random.nextInt(routeCategories.length)];
                         System.out.println(userName + " ищет маршрут по категории: " + routeCategoryQuery);
                         travelGuide.searchRoutes("category", routeCategoryQuery);
@@ -86,7 +102,6 @@ public class Main {
             }
         }
     }
-
 
     private static String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
