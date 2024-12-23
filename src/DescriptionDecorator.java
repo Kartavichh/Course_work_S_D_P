@@ -1,7 +1,7 @@
-import guide.Route;
-import guide.RouteDecorator;
+package guide;
 
-class DescriptionDecorator extends RouteDecorator {
+// Шаблон: Decorator
+public class DescriptionDecorator extends RouteDecorator {
     private final String description;
 
     public DescriptionDecorator(Route route, String description) {
@@ -11,6 +11,6 @@ class DescriptionDecorator extends RouteDecorator {
 
     @Override
     public String toString() {
-        return super.toString() + "\nОписание: " + description;
+        return super.toString() + "\nОписание: " + description; // Добавляем описание
     }
 }

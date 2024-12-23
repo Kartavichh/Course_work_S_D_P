@@ -4,8 +4,7 @@ import guide.Route;
 
 import java.util.List;
 
-// Интерфейс для стратегий поиска
-// Шаблон: Strategy
+// Интерфейс стратегии поиска (Шаблон: Strategy)
 public interface SearchStrategy {
-    void search(List<Route> places, String query);
+    void search(List<Route> places, String query, List<Route> foundRoutes);
 }

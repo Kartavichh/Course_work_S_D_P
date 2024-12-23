@@ -12,14 +12,6 @@ public class Main {
         // Использование фасада (Шаблон: Facade)
         DefaultTravelGuide defaultTravelGuide = new DefaultTravelGuide();
 
-        // Декорируем первый маршрут дополнительным описанием (Шаблон: Decorator)
-        Route firstRoute = defaultTravelGuide.getRoutes().getFirst();
-        Route decoratedRoute = new DescriptionDecorator(firstRoute, "Этот маршрут включает знаковые исторические объекты.");
-
-        synchronized (lock) {
-            System.out.println("\n=== Пример декорированного маршрута ===");
-            System.out.println(decoratedRoute); // Вывод декорированного маршрута
-        }
 
         // Имитация работы пользователей
         Runnable user1 = () -> simulateUser("Пользователь 1", defaultTravelGuide);
